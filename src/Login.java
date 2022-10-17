@@ -13,35 +13,17 @@ public class Login {
         String[] lineData = fileData.split("\n");
         for(int i=0;i<lineData.length;i++) {
             String[] credentials = lineData[i].split(":");
-            System.out.println("Username :- "+credentials[0]+", Password :- "+credentials[1]);
             userInfo.put(credentials[0].trim(),credentials[1].trim());
         }
         return userInfo;
     }
 
-    public boolean login() throws IOException {
+    public boolean login(String userType) throws IOException {
         Scanner sc = new Scanner(System.in);
-        System.out.println("What are you logging in as ? ");
-        System.out.println("1. Buyer");
-        System.out.println("2. Seller");
-        int input = sc.nextInt();
-        String fileName = "";
-        switch (input) {
-            case 1:
-                System.out.println("You have chosen Buyer login. Please complete login process.");
-                fileName = "BuyerInfo.txt";
-                // buyer login
-                break;
-            case 2:
-                System.out.println("You have chosen Seller login. Please complete login process.");
-                fileName = "SellerInfo.txt";
-                break;
-            default:
-                System.out.println("Invalid input.");
-        }
+
 
         String basePath = new File("").getAbsolutePath();
-        String path = new File("src/"+fileName).getAbsolutePath();
+        String path = new File("src/"+userType+"Info.txt").getAbsolutePath();
         System.out.println("Enter username");
         String username = sc.next();
         System.out.println("Enter password");
@@ -54,14 +36,12 @@ public class Login {
 //        HashMap<String,String> info = new HashMap<String, String>();
         HashMap<String,String> info = getFileData(path);
         if(!info.containsKey(username)) {
-            System.out.println("Invalid username");
+            System.out.println("Invalid username. Login failed.");
             return false;
         }
 
         else if(!info.get(username).equals(password.trim())) {
-            System.out.println("Actual value :- "+info.get(username));
-            System.out.println("entered :- "+password);
-            System.out.println("Invalid password");
+            System.out.println("Invalid password. Login failed.");
             return false;
         }
 

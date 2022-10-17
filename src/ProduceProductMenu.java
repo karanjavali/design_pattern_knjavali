@@ -2,27 +2,8 @@ public class ProduceProductMenu implements ProductMenu {
 
 	private ProductMenu productMenu;
 
+	@Override
 	public void showMenu() {
-
-	}
-
-	public void showViewButton() {
-
-	}
-
-	public void showRadioButton() {
-
-	}
-
-	public void showLabels() {
-
-	}
-
-	public void showComboxes() {
-
-	}
-
-	public void showAddButton() {
 
 	}
 

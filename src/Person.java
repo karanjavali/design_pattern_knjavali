@@ -1,8 +1,10 @@
 public abstract class Person {
 
-	private ProductMenu theProductMenu;
+	public Person(ProductMenu productMenu) {
+		this.productMenu = productMenu;
+	}
 
-	private ProductMenu productMenu;
+	protected ProductMenu productMenu;
 
 	public abstract void showMenu();
 
