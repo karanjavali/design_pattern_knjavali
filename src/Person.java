@@ -1,3 +1,5 @@
+import java.io.IOException;
+
 public abstract class Person {
 
 	public Person(ProductMenu productMenu) {
@@ -6,23 +8,8 @@ public abstract class Person {
 
 	protected ProductMenu productMenu;
 
-	public abstract void showMenu();
+	public abstract void showMenu() throws IOException;
 
-	public void showAddButton() {
-
-	}
-
-	public void showViewButton() {
-
-	}
-
-	public void showRadioButton() {
-
-	}
-
-	public void showLabels() {
-
-	}
 
 	public abstract ProductMenu CreateProductMenu();
 

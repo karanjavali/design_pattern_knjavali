@@ -1,22 +1,11 @@
 import java.io.*;
 import java.io.File;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.Scanner;
 
 public class Login {
 
-    public  HashMap<String, String> getFileData(String filePath) throws IOException {
-        HashMap<String,String> userInfo = new HashMap<String,String>();
-        String fileData = new String(Files.readAllBytes(Paths.get(filePath)));
-        String[] lineData = fileData.split("\n");
-        for(int i=0;i<lineData.length;i++) {
-            String[] credentials = lineData[i].split(":");
-            userInfo.put(credentials[0].trim(),credentials[1].trim());
-        }
-        return userInfo;
-    }
+    DatabaseHelper db = new DatabaseHelper();
 
     public boolean login(String userType) throws IOException {
         Scanner sc = new Scanner(System.in);
@@ -34,7 +23,7 @@ public class Login {
 
     public boolean checkCredentials(String username, String password, String path) throws IOException {
 //        HashMap<String,String> info = new HashMap<String, String>();
-        HashMap<String,String> info = getFileData(path);
+        HashMap<String,String> info = db.getFileData(path);
         if(!info.containsKey(username)) {
             System.out.println("Invalid username. Login failed.");
             return false;

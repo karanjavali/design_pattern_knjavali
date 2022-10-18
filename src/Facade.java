@@ -2,66 +2,12 @@ import java.io.IOException;
 import java.util.Scanner;
 
 public class Facade {
-
-	private int UserType;
-
-	private Product theSelectedProduct;
-
-	private int nProductCategory;
-
-	private ClassProductList theProductList;
-
-	private Person thePerson;
-
+	private Scanner sc = new Scanner(System.in);
 	private Login loginObject = new Login();
 	private Bridge bridgeObject = new Bridge();
 
-	public void addTrading() {
+	public String userLogin() throws IOException {
 
-	}
-
-	public void viewTrading() {
-
-	}
-
-	public void decideBidding() {
-
-	}
-
-	public void discussBidding() {
-
-	}
-
-	public void submitBidding() {
-
-	}
-
-	public void remind() {
-
-	}
-
-	public void createUser(UserInfoItem userinfoitem) {
-
-	}
-
-	public void createProductList() {
-
-	}
-
-	public void AttachProductToUser() {
-
-	}
-
-	public Product SelectProduct() {
-		return null;
-	}
-
-	public void productOperation() {
-
-	}
-
-	public void startOperation() throws IOException {
-		Scanner sc = new Scanner(System.in);
 		System.out.println("What are you logging in as ? ");
 		System.out.println("1. Buyer");
 		System.out.println("2. Seller");
@@ -82,23 +28,38 @@ public class Facade {
 		}
 
 		if(!loginObject.login(userType)) {
-			return;
+			return "Invalid User";
 		}
+		else {
+			return userType;
+		}
+	}
 
+	public String getProductType() {
 		System.out.println("What products are you interested in ?");
 		System.out.println("1. Meat\n2. Produce");
 		int productChoice = sc.nextInt();
 		String productType = "";
 		switch (productChoice) {
 			case 1:
-				productType = "Meat";
-				break;
+				 return "Meat";
 			case 2:
-				productType = "Produce";
-				break;
+				return "Produce";
 			default:
-				System.out.println("Invalid product type");
-				return;
+				return "Invalid";
+		}
+	}
+
+	public void startOperation() throws IOException {
+
+		String userType = userLogin();
+		if (userType == "Invalid User") {
+			return;
+		}
+
+		String productType = getProductType();
+		if (productType == "Invalid") {
+			return;
 		}
 
 		startFunctionality(bridgeObject.createInstance(userType,productType));
@@ -106,8 +67,8 @@ public class Facade {
 
 	}
 
-	public void startFunctionality(Person user) {
-
+	public void startFunctionality(Person user) throws IOException {
+		user.showMenu();
 	}
 
 }
