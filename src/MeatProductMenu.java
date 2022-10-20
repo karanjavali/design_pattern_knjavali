@@ -6,10 +6,16 @@ public class MeatProductMenu implements ProductMenu {
 	@Override
 	public void showMenu() throws IOException {
 		System.out.println("Displaying available meat items");
-		ArrayList<String> meatItems = db.getValues("Meat","ProductInfo.txt");
+		ArrayList<String> meatItems = getProductList();
 		for(int i=0;i<meatItems.size();i++) {
 			System.out.println((i+1)+". "+meatItems.get(i));
 		}
+	}
+
+	@Override
+	public ArrayList<String> getProductList() throws IOException {
+		ArrayList<String> meatItems = db.getValues("Meat","ProductInfo.txt");
+		return meatItems;
 	}
 
 

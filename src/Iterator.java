@@ -1,6 +1,7 @@
 public interface Iterator {
     boolean hasNext();
-    Object next();
-    void remove();
+    Offering next();
     void moveToHead();
+
+    void reset();
 }

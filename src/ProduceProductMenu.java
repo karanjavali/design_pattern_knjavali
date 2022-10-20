@@ -8,10 +8,16 @@ public class ProduceProductMenu implements ProductMenu {
 	@Override
 	public void showMenu() throws IOException {
 		System.out.println("Displaying available produce items");
-		ArrayList<String> meatItems = db.getValues("Produce","ProductInfo.txt");
-		for(int i=0;i<meatItems.size();i++) {
-			System.out.println((i+1)+". "+meatItems.get(i));
+		ArrayList<String> produceItems = getProductList();
+		for(int i=0;i<produceItems.size();i++) {
+			System.out.println((i+1)+". "+produceItems.get(i));
 		}
+	}
+
+	@Override
+	public ArrayList<String> getProductList() throws IOException {
+		ArrayList<String> produceItems = db.getValues("Produce","ProductInfo.txt");
+		return produceItems;
 	}
 
 }

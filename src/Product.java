@@ -1,7 +1,6 @@
 public class Product {
 
-	private Trading trading;
-
-	private ClassProductList classProductList;
-
+	private String productType;
+	private String product;
+	private String sellerName;
 }

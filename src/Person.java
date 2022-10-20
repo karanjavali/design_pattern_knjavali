@@ -1,6 +1,37 @@
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Scanner;
 
 public abstract class Person {
+	private DatabaseHelper helper = new DatabaseHelper();
+	public OfferingList getOfferingList() {
+		return offeringList;
+	}
+
+	public void setOfferingList(OfferingList offeringList) {
+		this.offeringList = offeringList;
+	}
+
+	private OfferingList offeringList = new OfferingList();
+	public Scanner getSc() {
+		return sc;
+	}
+
+	public void setSc(Scanner sc) {
+		this.sc = sc;
+	}
+
+	private Scanner sc = new Scanner(System.in);
+	private String userName;
+
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+
+	public String getUserName() {
+		return userName;
+	}
 
 	public Person(ProductMenu productMenu) {
 		this.productMenu = productMenu;
@@ -10,7 +41,9 @@ public abstract class Person {
 
 	public abstract void showMenu() throws IOException;
 
-
+	public abstract  void startOperation() throws IOException;
 	public abstract ProductMenu CreateProductMenu();
+
+
 
 }

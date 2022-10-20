@@ -1,4 +1,6 @@
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Scanner;
 
 public class Facade {
@@ -6,34 +8,30 @@ public class Facade {
 	private Login loginObject = new Login();
 	private Bridge bridgeObject = new Bridge();
 
-	public String userLogin() throws IOException {
 
-		System.out.println("What are you logging in as ? ");
-		System.out.println("1. Buyer");
-		System.out.println("2. Seller");
-		int loginChoice = sc.nextInt();
-		String userType = "";
-		switch (loginChoice) {
-			case 1:
-				System.out.println("You have chosen Buyer login. Please complete login process.");
-				userType = "Buyer";
-				// buyer login
-				break;
-			case 2:
-				System.out.println("You have chosen Seller login. Please complete login process.");
-				userType = "Seller";
-				break;
-			default:
-				System.out.println("Invalid input.");
-		}
 
-		if(!loginObject.login(userType)) {
-			return "Invalid User";
+	private DatabaseHelper helper = new DatabaseHelper();
+
+	public ArrayList<String> getBuyerList() throws IOException {
+		ArrayList<String> buyers = new ArrayList<String>();
+		HashMap<String,String> listOfBuyers = helper.getFileData("BuyerInfo.txt");
+		for(String b :listOfBuyers.keySet()) {
+			buyers.add(b);
 		}
-		else {
-			return userType;
-		}
+		return buyers;
 	}
+
+	public ArrayList<String> getSellerList() throws IOException {
+		ArrayList<String> sellers = new ArrayList<String>();
+		HashMap<String,String> listOfSellers = helper.getFileData("SellerInfo.txt");
+		for(String b :listOfSellers.keySet()) {
+			sellers.add(b);
+		}
+		return sellers;
+	}
+
+
+
 
 	public String getProductType() {
 		System.out.println("What products are you interested in ?");
@@ -50,10 +48,13 @@ public class Facade {
 		}
 	}
 
+
+
 	public void startOperation() throws IOException {
 
-		String userType = userLogin();
-		if (userType == "Invalid User") {
+		String userDetails[] = loginObject.userLogin();
+		String userName = userDetails[1];
+		if (userName == "Invalid_User") {
 			return;
 		}
 
@@ -62,12 +63,12 @@ public class Facade {
 			return;
 		}
 
-		startFunctionality(bridgeObject.createInstance(userType,productType));
-
-
+		Person user = bridgeObject.createInstance(userDetails[0],productType);
+		user.setUserName(userDetails[1]);
+		user.startOperation();
 	}
 
-	public void startFunctionality(Person user) throws IOException {
+	public void getMenu(Person user) throws IOException {
 		user.showMenu();
 	}
 

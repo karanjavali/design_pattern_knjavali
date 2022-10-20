@@ -1,7 +1,9 @@
-tutu:Beef
 tutu:Tomato
-mimi:Beef
 mimi:Onion
 pepe:Beef
 pepe:Tomato
+tutu:Pork
 pepe:Onion
+
+tutu:Beef
+tutu:Mutton
