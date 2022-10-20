@@ -79,12 +79,23 @@ public class Seller extends Person {
 			offer =  iterator2.next();
 			i++;
 		}
-		System.out.println("username : "+offer.getUserName()+" product: "+offer.getProduct());
 		String lineContent = offer.getUserName()+":"+offer.getProduct();
 		helper.removeLine(lineContent,"UserProduct.txt");
 		offeringListObj.remove(offer);
 
+		System.out.println("Successfully sold to buyer!");
 
+
+	}
+
+	public void addProduct() {
+		Scanner sc = getSc();
+		System.out.println("Enter the product to add");
+		String input = sc.nextLine();
+		/**
+		 * Functionality not yet implemented
+		 */
+		System.out.println("Product added successfully");
 
 	}
 
@@ -95,21 +106,25 @@ public class Seller extends Person {
 			String userName = getUserName();
 			System.out.println("What would you like to do?");
 			System.out.println("1. Show menu");
-			System.out.println("2. View buyer bids");
-			System.out.println("3. Complete transaction");
-			System.out.println("4. Exit");
+			System.out.println("2. Add product"); // Not implemented
+			System.out.println("3. View buyer bids");
+			System.out.println("4. Complete transaction");
+			System.out.println("5. Exit");
 			int userInput = sc.nextInt();
 			switch (userInput) {
 				case 1:
 					showMenu();
 					break;
 				case 2:
-					viewBids();
+					addProduct();
 					break;
 				case 3:
-					sellToBuyer();
+					viewBids();
 					break;
 				case 4:
+					sellToBuyer();
+					break;
+				case 5:
 					return;
 				default:
 					System.out.println("Invalid choice");

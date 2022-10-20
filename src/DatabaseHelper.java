@@ -69,7 +69,6 @@ public class DatabaseHelper {
 
     public void removeLine(String lineContent,String fileName) throws IOException
     {
-        System.out.println("Line content:- "+lineContent);
         String path = getPath(fileName);
         Path path1 = Paths.get(path);
         String fileData = new String(Files.readAllBytes(path1));
@@ -79,10 +78,8 @@ public class DatabaseHelper {
         lineData = list.toArray(new String[0]);
         String content = "";
         for(String line:lineData) {
-
                 content += line + "\n";
         }
-        System.out.println("final content : "+content);
         content.trim();
         Files.write(Paths.get(path1.toUri()), content.getBytes(), StandardOpenOption.TRUNCATE_EXISTING);
     }
