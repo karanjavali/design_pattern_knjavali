@@ -2,7 +2,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class MeatProductMenu implements ProductMenu {
-	DatabaseHelper db = new DatabaseHelper();
+	DatabaseHelper db = DatabaseHelper.getInstance();
 	@Override
 	public void showMenu() throws IOException {
 		System.out.println("Displaying available meat items");

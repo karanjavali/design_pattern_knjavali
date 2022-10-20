@@ -3,7 +3,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Buyer extends Person {
-	private DatabaseHelper helper = new DatabaseHelper();
+	private DatabaseHelper helper = DatabaseHelper.getInstance();
 	private OfferingList offeringListObj = getOfferingList();
 	public Buyer(ProductMenu productMenu) {
 		super(productMenu);

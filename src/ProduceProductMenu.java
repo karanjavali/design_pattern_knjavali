@@ -4,7 +4,7 @@ import java.util.ArrayList;
 public class ProduceProductMenu implements ProductMenu {
 
 	private ProductMenu productMenu;
-	private DatabaseHelper db = new DatabaseHelper();
+	private DatabaseHelper db = DatabaseHelper.getInstance();
 	@Override
 	public void showMenu() throws IOException {
 		System.out.println("Displaying available produce items");

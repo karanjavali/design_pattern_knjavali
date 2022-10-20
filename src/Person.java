@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Scanner;
 
 public abstract class Person {
-	private DatabaseHelper helper = new DatabaseHelper();
+	private DatabaseHelper helper = DatabaseHelper.getInstance();
 	public OfferingList getOfferingList() {
 		return offeringList;
 	}

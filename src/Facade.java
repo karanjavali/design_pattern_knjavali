@@ -10,7 +10,7 @@ public class Facade {
 
 
 
-	private DatabaseHelper helper = new DatabaseHelper();
+	private DatabaseHelper helper = DatabaseHelper.getInstance();
 
 	public ArrayList<String> getBuyerList() throws IOException {
 		ArrayList<String> buyers = new ArrayList<String>();

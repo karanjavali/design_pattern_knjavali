@@ -1,3 +1,4 @@
+import javax.xml.crypto.Data;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -11,7 +12,16 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class DatabaseHelper {
+    private static DatabaseHelper single_instance = null;
+    private DatabaseHelper() {}
 
+    public static DatabaseHelper getInstance()
+    {
+        if (single_instance == null)
+            single_instance = new DatabaseHelper();
+
+        return single_instance;
+    }
     public String getPath(String fileName) {
         String basePath = new File("").getAbsolutePath();
         String path = new File("src/"+fileName).getAbsolutePath();

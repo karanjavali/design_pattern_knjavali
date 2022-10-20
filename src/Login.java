@@ -6,7 +6,7 @@ import java.util.Scanner;
 public class Login {
 
     Scanner sc = new Scanner(System.in);
-    DatabaseHelper db = new DatabaseHelper();
+    DatabaseHelper db = DatabaseHelper.getInstance();
 
     public String login(String userType) throws IOException {
         Scanner sc = new Scanner(System.in);

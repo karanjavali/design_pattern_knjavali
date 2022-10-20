@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Scanner;
 
 public class Seller extends Person {
-	DatabaseHelper helper = new DatabaseHelper();
+	DatabaseHelper helper = DatabaseHelper.getInstance();
 	Seller(ProductMenu productMenu) {
 		super(productMenu);
 	}
