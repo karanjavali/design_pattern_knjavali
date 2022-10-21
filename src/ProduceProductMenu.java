@@ -5,6 +5,18 @@ public class ProduceProductMenu implements ProductMenu {
 
 	private ProductMenu productMenu;
 	private DatabaseHelper db = DatabaseHelper.getInstance();
+
+	@Override
+	public String getProductType() {
+		return productType;
+	}
+
+	@Override
+	public void setProductType(String productType) {
+		this.productType = productType;
+	}
+
+	private String productType = "Produce";
 	@Override
 	public void showMenu() throws IOException {
 		System.out.println("Displaying available produce items");

@@ -15,6 +15,8 @@ public class Factory {
         }
     }
 
+
+
     public Person createUser(String userType, ProductMenu product) {
         if(userType == null || userType.isEmpty()) {
             System.out.println("No usertype entered");

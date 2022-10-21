@@ -42,7 +42,6 @@ public abstract class Person {
 	public abstract void showMenu() throws IOException;
 
 	public abstract  void startOperation() throws IOException;
-	public abstract ProductMenu CreateProductMenu();
 
 
 

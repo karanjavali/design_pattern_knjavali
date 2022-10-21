@@ -48,7 +48,18 @@ public class Facade {
 		}
 	}
 
-
+	public ArrayList<Reminder> getReminders(String[] userDetails) throws IOException {
+		ArrayList<Reminder> reminders = new ArrayList<Reminder>();
+		ArrayList<String> reminderList = helper.getValues(userDetails[0],"Reminders.txt");
+		ArrayList<String> commonReminderList = helper.getValues(userDetails[1],"Reminders.txt");
+		for(String s:reminderList) {
+			reminders.add(new Reminder(userDetails[0],s));
+		}
+		for(String s:commonReminderList){
+			reminders.add(new Reminder(userDetails[1],s));
+		}
+		return reminders;
+	}
 
 	public void startOperation() throws IOException {
 
@@ -62,7 +73,14 @@ public class Facade {
 		if (productType == "Invalid") {
 			return;
 		}
-
+		ReminderVisitor visitor = new ReminderVisitor();
+		ArrayList<Reminder> reminders = getReminders(userDetails);
+		System.out.println("----------------------------------------------------------------");
+		System.out.println("\nHere are some reminders for you :-\n");
+		for(Reminder r:reminders) {
+			r.visitReminder(visitor);
+		}
+		System.out.println("----------------------------------------------------------------");
 		Person user = bridgeObject.createInstance(userDetails[0],productType);
 		user.setUserName(userDetails[1]);
 		user.startOperation();

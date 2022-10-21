@@ -50,7 +50,6 @@ public class Seller extends Person {
 
 	public void viewBids() {
 		Iterator iterator = offeringListObj.getIterator();
-		ArrayList<Offering> list = offeringListObj.getOfferingList();
 		System.out.println("Bids placed for following products :- ");
 		while(iterator.hasNext()) {
 			Offering o =  iterator.next();
@@ -61,7 +60,6 @@ public class Seller extends Person {
 	public void sellToBuyer() throws IOException {
 		Scanner sc = getSc();
 		Iterator iterator = offeringListObj.getIterator();
-		ArrayList<Offering> list = offeringListObj.getOfferingList();
 		ArrayList<String > buyers = new ArrayList<String>();
 		System.out.println("Select transaction to complete");
 		int i=0;
@@ -79,23 +77,46 @@ public class Seller extends Person {
 			offer =  iterator2.next();
 			i++;
 		}
-		String lineContent = offer.getUserName()+":"+offer.getProduct();
-		helper.removeLine(lineContent,"UserProduct.txt");
-		offeringListObj.remove(offer);
-
-		System.out.println("Successfully sold to buyer!");
-
-
+		if(offer==null || userInput>i) {
+			System.out.println("Invalid input");
+			return;
+		}
+		ArrayList<String> availableProducts =  helper.getValues(getUserName(),"UserProduct.txt");
+		if (availableProducts.contains(offer.getProduct())) {
+			String lineContent = offer.getUserName()+":"+offer.getProduct();
+			helper.removeLine(lineContent,"UserProduct.txt");
+			offeringListObj.remove(offer);
+			System.out.println("Successfully sold to buyer!");
+			String reminder = "\n"+offer.getUserName()+":Seller "+getUserName()+" has sold you product - "+offer.getProduct();
+			helper.addContentToFile(reminder,"Reminders.txt");
+		}
+		else {
+			System.out.println("Product not available to sell");
+		}
 	}
 
-	public void addProduct() {
+	public void addProduct() throws IOException {
 		Scanner sc = getSc();
 		System.out.println("Enter the product to add");
+		sc.nextLine();
 		String input = sc.nextLine();
-		/**
-		 * Functionality not yet implemented
-		 */
-		System.out.println("Product added successfully");
+		String productType = productMenu.getProductType();
+		ArrayList<String> productTypeValues = helper.getValues(productType,"ProductInfo.txt");
+		ArrayList<String> bidValues = helper.getValues(getUserName(),"UserProduct.txt");
+		if(!bidValues.contains(input)) {
+			helper.addContentToFile("\n"+getUserName()+":"+input,"UserProduct.txt");
+			if(!productTypeValues.contains(input)) {
+				helper.addContentToFile("\n"+productMenu.getProductType()+":"+input,"ProductInfo.txt");
+			}
+			System.out.println("Product added successfully");
+			String reminder = "\nBuyer:Seller "+getUserName()+" has added "+input+" for sale";
+			helper.addContentToFile(reminder,"Reminders.txt");
+		}
+
+		else {
+			System.out.println("Product already present");
+		}
+
 
 	}
 
@@ -104,9 +125,9 @@ public class Seller extends Person {
 		while (true) {
 			Scanner sc = getSc();
 			String userName = getUserName();
-			System.out.println("What would you like to do?");
+			System.out.println("\nWhat would you like to do?");
 			System.out.println("1. Show menu");
-			System.out.println("2. Add product"); // Not implemented
+			System.out.println("2. Add product");
 			System.out.println("3. View buyer bids");
 			System.out.println("4. Complete transaction");
 			System.out.println("5. Exit");

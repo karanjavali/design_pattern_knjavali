@@ -1,5 +1,6 @@
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Buyer extends Person {
@@ -15,11 +16,12 @@ public class Buyer extends Person {
 
 	public void viewBids() {
 		Iterator iterator = offeringListObj.getIterator();
-		ArrayList<Offering> list = offeringListObj.getOfferingList();
 		System.out.println("Bids placed for following products :- ");
+		int i = 1;
 		while(iterator.hasNext()) {
 			Offering o =  iterator.next();
-			System.out.println(o.getProduct());
+			System.out.println(i+". "+o.getProduct());
+			i++;
 		}
 	}
 
@@ -31,9 +33,12 @@ public class Buyer extends Person {
 		}
 		Scanner sc = getSc();
 		int userInput = sc.nextInt();
+		if(userInput<=0 || userInput>productList.size()) {
+			System.out.println("Invalid input");
+			return;
+		}
 		String wantedProduct = productList.get(userInput-1);
 		Iterator iterator = offeringListObj.getIterator();
-		ArrayList<Offering> list = offeringListObj.getOfferingList();
 		while(iterator.hasNext()) {
 			Offering o =  iterator.next();
 			if (o.getProduct().equals(wantedProduct)) {
@@ -46,10 +51,33 @@ public class Buyer extends Person {
 		offeringListObj.addOffering(newOffering);
 		helper.addContentToFile("\n"+getUserName()+":"+wantedProduct,"UserProduct.txt");
 		System.out.println("Successfully placed bid for "+wantedProduct);
+		String reminder = "\nSeller:Buyer "+getUserName()+" has placed a bid for "+wantedProduct;
+		helper.addContentToFile(reminder,"Reminders.txt");
+
 	}
 
-	public void removeBid() {
-
+	public void removeBid() throws IOException {
+		viewBids();
+		Scanner sc = getSc();
+		System.out.println("Which bid do you want to remove?");
+		int input = sc.nextInt();
+		int i = 0;
+		Iterator iterator = offeringListObj.getIterator();
+		Offering offer = null;
+		while(i<input && iterator.hasNext()) {
+			offer = iterator.next();
+			i++;
+		}
+		if(offer == null || input>i) {
+			System.out.println("Invalid input");
+			return;
+		}
+		String lineContent = offer.getUserName()+":"+offer.getProduct();
+		helper.removeLine(lineContent,"UserProduct.txt");
+		offeringListObj.remove(offer);
+		System.out.println("Bid successfully removed");
+		String reminder = "\nSeller:Buyer "+offer.getUserName()+" has removed the bid for "+offer.getProduct();
+		helper.addContentToFile(reminder,"Reminders.txt");
 	}
 
 	public void startOperation() throws IOException {
@@ -57,11 +85,12 @@ public class Buyer extends Person {
 		while (true) {
 			Scanner sc = getSc();
 			String userName = getUserName();
-			System.out.println("What would you like to do?");
+			System.out.println("\nWhat would you like to do?");
 			System.out.println("1. Show menu");
 			System.out.println("2. View bids");
 			System.out.println("3. Place bid");
-			System.out.println("4. Exit");
+			System.out.println("4. Remove bid");
+			System.out.println("5. Exit");
 			int userInput = sc.nextInt();
 			switch (userInput) {
 				case 1:
@@ -74,6 +103,9 @@ public class Buyer extends Person {
 					placeBid();
 					break;
 				case 4:
+					removeBid();
+					break;
+				case 5:
 					return;
 				default:
 					System.out.println("Invalid choice");

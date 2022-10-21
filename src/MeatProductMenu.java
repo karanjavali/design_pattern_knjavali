@@ -3,6 +3,18 @@ import java.util.ArrayList;
 
 public class MeatProductMenu implements ProductMenu {
 	DatabaseHelper db = DatabaseHelper.getInstance();
+
+	@Override
+	public String getProductType() {
+		return productType;
+	}
+
+	@Override
+	public void setProductType(String productType) {
+		this.productType = productType;
+	}
+
+	private String productType = "Meat";
 	@Override
 	public void showMenu() throws IOException {
 		System.out.println("Displaying available meat items");

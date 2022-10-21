@@ -4,10 +4,6 @@ import static java.util.Spliterators.iterator;
 
 public class OfferingList extends ArrayList<Offering> {
 
-	public ArrayList<Offering> getOfferingList() {
-		return offeringList;
-	}
-
 	public void setOfferingList(ArrayList<Offering> offeringList) {
 		this.offeringList = offeringList;
 	}
