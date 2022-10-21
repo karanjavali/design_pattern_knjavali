@@ -9,10 +9,6 @@ public class MeatProductMenu implements ProductMenu {
 		return productType;
 	}
 
-	@Override
-	public void setProductType(String productType) {
-		this.productType = productType;
-	}
 
 	private String productType = "Meat";
 

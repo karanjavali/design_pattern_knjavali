@@ -11,10 +11,6 @@ public class ProduceProductMenu implements ProductMenu {
 		return productType;
 	}
 
-	@Override
-	public void setProductType(String productType) {
-		this.productType = productType;
-	}
 
 	private String productType = "Produce";
 	// Display produce products
