@@ -1,9 +1,6 @@
 # design_pattern_knjavali
 Implementation of Product Trading and Bidding System
 
-# design_pattern_knjavali
-Implementation of Product Trading and Bidding System
-
 Run the Main file to start the application.
 
 No external dependencies
