@@ -1,3 +1,4 @@
+// This class contains userName and product
 public class Offering {
 
 	public String getProduct() {

@@ -1,3 +1,4 @@
+// This class has 2 fields :- userName and message
 public class Reminder {
 
     Reminder(String userName, String message) {

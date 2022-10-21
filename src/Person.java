@@ -9,18 +9,12 @@ public abstract class Person {
 		return offeringList;
 	}
 
-	public void setOfferingList(OfferingList offeringList) {
-		this.offeringList = offeringList;
-	}
 
 	private OfferingList offeringList = new OfferingList();
 	public Scanner getSc() {
 		return sc;
 	}
 
-	public void setSc(Scanner sc) {
-		this.sc = sc;
-	}
 
 	private Scanner sc = new Scanner(System.in);
 	private String userName;

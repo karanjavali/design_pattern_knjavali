@@ -8,16 +8,16 @@ public class Login {
     Scanner sc = new Scanner(System.in);
     DatabaseHelper db = DatabaseHelper.getInstance();
 
+    // Login procedure at the beginning
     public String login(String userType) throws IOException {
         Scanner sc = new Scanner(System.in);
-
-
+        // Take user input
         String fileName = userType+"Info.txt";
         System.out.println("Enter username");
         String username = sc.next();
         System.out.println("Enter password");
         String password = sc.next();
-        // if login successful
+        // check credentials
         return checkCredentials(username,password,fileName);
     }
     public String[] userLogin() throws IOException {

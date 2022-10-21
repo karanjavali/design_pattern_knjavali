@@ -4,7 +4,7 @@ Meat:Mutton
 Produce:Tomato
 Produce:Onion
 Produce:Potato
-Meat:Prawns
 Produce:Lemons
-Meat:Bacon
 Produce:Wheat
+
+Meat:Fish

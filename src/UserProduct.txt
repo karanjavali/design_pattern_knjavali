@@ -1,9 +1,7 @@
 tutu:Tomato
-pepe:Beef
 pepe:Tomato
 pepe:Onion
 tutu:Mutton
-
 
 tutu:Onion
 pepe:Pork
@@ -17,3 +15,7 @@ pepe:Lemons
 pepe:Bacon
 
 pepe:Wheat
+
+pepe:Mutton
+
+pepe:Fish

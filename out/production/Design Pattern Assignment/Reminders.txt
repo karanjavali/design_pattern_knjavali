@@ -2,3 +2,5 @@ Buyer:Seller pepe has added Bacon for sale
 Seller:Buyer tutu has removed the bid for Beef
 Buyer:Seller pepe has added Wheat for sale
 mimi:Seller pepe has sold you product - Onion
+Buyer:Seller pepe has added Mutton for sale
+Buyer:Seller pepe has added Fish for sale

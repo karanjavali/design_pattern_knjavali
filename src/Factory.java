@@ -1,4 +1,6 @@
 public class Factory {
+
+    // This function returns a MeatProductMenu object or ProduceProductMenu object based on user input
     public ProductMenu createProduct(String productType) {
         if(productType == null || productType.isEmpty()) {
             System.out.println("No product type entered");
@@ -16,7 +18,7 @@ public class Factory {
     }
 
 
-
+    // This function returns Buyer/Seller Object based on user input.
     public Person createUser(String userType, ProductMenu product) {
         if(userType == null || userType.isEmpty()) {
             System.out.println("No usertype entered");

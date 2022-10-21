@@ -15,6 +15,8 @@ public class MeatProductMenu implements ProductMenu {
 	}
 
 	private String productType = "Meat";
+
+	// Display meat products
 	@Override
 	public void showMenu() throws IOException {
 		System.out.println("Displaying available meat items");
@@ -24,6 +26,7 @@ public class MeatProductMenu implements ProductMenu {
 		}
 	}
 
+	// Return meat products ArrayList from ProductInfo.txt
 	@Override
 	public ArrayList<String> getProductList() throws IOException {
 		ArrayList<String> meatItems = db.getValues("Meat","ProductInfo.txt");
