@@ -1,0 +1,11 @@
+Meat:Beef
+Meat:Pork
+Meat:Mutton
+Produce:Tomato
+Produce:Onion
+Produce:Potato
+Produce:Lemons
+Produce:Wheat
+
+Meat:Fish
+Meat:Eel

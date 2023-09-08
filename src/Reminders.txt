@@ -1,0 +1,12 @@
+Buyer:Seller pepe has added Bacon for sale
+Seller:Buyer tutu has removed the bid for Beef
+Buyer:Seller pepe has added Wheat for sale
+mimi:Seller pepe has sold you product - Onion
+Buyer:Seller pepe has added Mutton for sale
+Buyer:Seller pepe has added Fish for sale
+Seller:Buyer tutu has placed a bid for Beef
+Seller:Buyer tutu has removed the bid for Beef
+Seller:Buyer tutu has placed a bid for Wheat
+Seller:Buyer tutu has removed the bid for Wheat
+Buyer:Seller pepe has added Eel for sale
+tutu:Seller pepe has sold you product - Mutton
